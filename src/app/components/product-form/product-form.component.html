@@ -1,0 +1,94 @@
+<div class="wrapper">
+
+  <div class="modal-title-box">
+    <div class="modal-title-text">
+      {{product ? product.name : 'Create new product'}}
+    </div>
+    <div class="cross-box">
+      <div class="cross-item" (click)="closeModal()"></div>
+
+    </div>
+
+  </div>
+  <div class="form-container">
+    <form [formGroup]="createForm" (ngSubmit)="submitForm()">
+
+      <div class="form-image-block">
+        <div>
+          <label for="imageUrl" class="input-label" style="display: block">Product image*</label>
+          <img *ngIf="imgUrl" class="form-image" [src]="imgUrl" alt="">
+        </div>
+        <div class="input-box">
+          <input [formControl]="imageInput" id="imageUrl" type="file" accept=".png, .jpg"
+                 (input)="setImage($event)"
+                 [ngClass]=" checkValidityImage()?'image-input-err':'image-input'">
+          <label for="imageUrl" class="choose-image-btn">Choose image</label>
+          <label for="imageUrl" class="input-label-error" *ngIf="checkValidityImage()">This input is
+            required!</label>
+        </div>
+      </div>
+
+      <div class="input-box">
+
+        <label for="name" class="input-label">Product name*</label>
+        <input formControlName="name" id="name" type="text"
+               [ngClass]=" checkValidity('name')?'input-error':'input-default'">
+        <label for="name" class="input-label-error" *ngIf="checkValidity('name', 'require')">This input is
+          required!</label>
+      </div>
+      <div class="input-box">
+
+        <label for="count" class="input-label">Product Count*</label>
+        <input formControlName="count" id="count" type="text"
+               [ngClass]=" checkValidity('count')?'input-error':'input-default'">
+        <label for="count" class="input-label-error" *ngIf="checkValidity('count')">This input is
+          required!</label>
+      </div>
+      <div class="input-box">
+
+        <label for="weight" class="input-label">Product Weight*</label>
+        <input formControlName="weight" id="weight" type="text"
+               [ngClass]=" checkValidity('weight')?'input-error':'input-default'">
+        <label for="weight" class="input-label-error" *ngIf="checkValidity('weight')">This input is
+          required!</label>
+      </div>
+
+      <div class="input-box" formGroupName="size">
+
+        <label for="width" class="input-label">Product Width*</label>
+        <input formControlName="width" id="width" type="text"
+               [ngClass]=" checkValidity('size', 'width')?'input-error':'input-default'">
+        <label for="width" class="input-label-error" *ngIf="checkValidity('size', 'width')">This input is
+          required!</label>
+
+      </div>
+      <div class="input-box" formGroupName="size">
+
+        <label for="height" class="input-label">Product Height*</label>
+        <input formControlName="height" id="height" type="text"
+               [ngClass]=" checkValidity('size', 'height')?'input-error':'input-default'">
+        <label for="height" class="input-label-error-password" *ngIf="checkValidity('size', 'height')">This
+          input is
+          required!</label>
+
+      </div>
+
+
+      <div *ngIf="!product" class="create-button-box-modal">
+        <div class="create-button mt-17 mb-0" (click)="submitForm()">
+          <div class="create-button-text"> Create</div>
+        </div>
+      </div>
+      <div *ngIf="product" class="update-button-box-modal">
+        <div class="create-button mt-17 mb-0 delete-btn-color" (click)="deleteUser()">
+          <div class="create-button-text"> Delete</div>
+        </div>
+        <div class="create-button mt-17  mb-0" (click)="updateUser()">
+          <div class="create-button-text"> Save</div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+</div>

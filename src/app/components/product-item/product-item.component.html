@@ -1,0 +1,29 @@
+<div class="wrapper">
+
+  <div class="item-box" (click)="openedUserEditModal()">
+    <div class="image-block">
+      <img [src]="product.imageUrl" class="item-image" alt="">
+    </div>
+    <div class="info-block">
+      <div class="product-name-box text-font-property">
+        <h2>{{product.name}}</h2>
+      </div>
+      <div class="product-description-box text-font-property">
+        <span>Count:</span>
+        <span class="text-font-value">{{product.count}}</span>
+      </div>
+      <div class="product-size-box text-font-property">
+        <span>Size: </span>
+        <span class="text-font-value">{{product.size.width}} x {{product.size.width}}</span>
+      </div>
+
+      <div class="comments text-font-property">
+        <span>Comments: </span>
+        <span class="text-font-value">{{product.comments.length}}</span>
+      </div>
+    </div>
+
+
+  </div>
+
+</div>
